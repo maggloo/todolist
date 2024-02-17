@@ -1,26 +1,10 @@
-/*
-.Application {
-  padding: 30px;
-  display: flex;
+
+.title {
+    letter-spacing: 1px;
+    font-style: italic;
+    margin-right: auto;
+    color: #f30057;
+    font-weight: bold;
+    font-size: larger;
 }
 
-.Application > div {
-  margin-right: 50px;
-}
-
-.error {
-  border: red 1px solid;
-}
-
-.error-message {
-  color: red;
-}
-
-.active-filter {
-  background-color: aquamarine;
-}
-
-.is-done {
-  opacity: 0.5;
-}
-*/

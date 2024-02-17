@@ -78,16 +78,20 @@ export const Login = () => {
                         <TextField
                             label="Email"
                             margin="normal"
+                            color="secondary"
+                            error={!!formik.errors.email}
+                            helperText={formik.errors.email}
                             {...formik.getFieldProps("email")}
                         />
-                        {formik.errors.email ? <div>{formik.errors.email}</div> : null}
                         <TextField
                             type="password"
                             label="Password"
                             margin="normal"
+                            color="secondary"
+                            error={!!formik.errors.password}
+                            helperText={formik.errors.password}
                             {...formik.getFieldProps("password")}
                         />
-                        {formik.errors.password ? <div>{formik.errors.password}</div> : null}
                         <FormControlLabel
                             label={'Remember me'}
                             control={<Checkbox
@@ -95,7 +99,7 @@ export const Login = () => {
                                 checked={formik.values.rememberMe}
                             />}
                         />
-                        <Button type={'submit'} variant={'contained'} color={'primary'}>Login</Button>
+                        <Button type={'submit'} variant={'contained'} color={'secondary'}>Login</Button>
                     </FormGroup>
                 </FormControl>
             </form>

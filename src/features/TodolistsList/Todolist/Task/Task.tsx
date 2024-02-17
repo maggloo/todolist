@@ -37,7 +37,7 @@ export const Task = React.memo((props: TaskPropsType) => {
     style={{position: 'relative'}}>
         <Checkbox
             checked={props.task.status === TaskStatuses.Completed}
-            color="primary"
+            color="secondary"
             onChange={onChangeHandler}
         />
 

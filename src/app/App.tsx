@@ -5,15 +5,12 @@ import {
     Button,
     CircularProgress,
     Container,
-    IconButton,
     LinearProgress,
     Toolbar,
-    Typography
 } from '@material-ui/core'
-import {Menu} from '@material-ui/icons'
 import {TodolistsList} from '../features/TodolistsList'
 import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar'
-import {useDispatch, useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 import {appActions} from '../features/Application'
 import {Route} from 'react-router-dom'
 import {authActions, Login} from '../features/Auth'
@@ -53,17 +50,12 @@ function App({demo = false}: PropsType) {
     return (
             <div className="App">
                 <ErrorSnackbar/>
-                <AppBar position="static">
+                <AppBar position="static" color='inherit'>
                     <Toolbar>
-                        <IconButton edge="start" color="inherit" aria-label="menu">
-                            <Menu/>
-                        </IconButton>
-                        <Typography variant="h6">
-                            News
-                        </Typography>
-                        {isLoggedIn && <Button color="inherit" onClick={logoutHandler}>Log out</Button>}
+                        <div className='title'>TodoList</div>
+                        {isLoggedIn && <Button color="secondary" variant={"outlined"} onClick={logoutHandler}>Log out</Button>}
                     </Toolbar>
-                    {status === 'loading' && <LinearProgress/>}
+                    {status === 'loading' && <LinearProgress color={"secondary"}/>}
                 </AppBar>
                 <Container fixed>
                     <Route exact path={'/'} render={() => <TodolistsList demo={demo}/>}/>
