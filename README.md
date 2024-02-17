@@ -12,7 +12,6 @@ Classic todolist application
 * typescript
 * material ui
 * axios
-* storybook
 * formik
 * react-router-dom
 
