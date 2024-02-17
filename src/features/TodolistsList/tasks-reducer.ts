@@ -5,6 +5,7 @@ import {handleAsyncServerAppError, handleAsyncServerNetworkError} from '../../ut
 import {asyncActions as asyncTodolistsActions} from './todolists-reducer'
 import {AppRootStateType, ThunkError} from '../../utils/types'
 import {TaskPriorities, TaskStatuses, TaskType, UpdateTaskModelType} from '../../api/types'
+import {AxiosError} from "axios";
 
 const initialState: TasksStateType = {}
 
@@ -16,7 +17,7 @@ export const fetchTasks = createAsyncThunk<{ tasks: TaskType[], todolistId: stri
         thunkAPI.dispatch(appActions.setAppStatus({status: 'succeeded'}))
         return {tasks, todolistId}
     } catch (error) {
-        return handleAsyncServerNetworkError(error, thunkAPI)
+        return handleAsyncServerNetworkError(error as AxiosError, thunkAPI)
     }
 })
 export const removeTask = createAsyncThunk<{ taskId: string, todolistId: string }, { taskId: string, todolistId: string }, ThunkError>('tasks/removeTask',
@@ -37,7 +38,7 @@ export const addTask = createAsyncThunk<TaskType, { title: string, todolistId: s
                 return thunkAPI.rejectWithValue({errors: res.data.messages, fieldsErrors: res.data.fieldsErrors})
             }
         } catch (err) {
-            return handleAsyncServerNetworkError(err, thunkAPI, false)
+            return handleAsyncServerNetworkError(err as AxiosError, thunkAPI, false)
         }
     })
 export const updateTask = createAsyncThunk('tasks/updateTask', async (param: { taskId: string, model: UpdateDomainTaskModelType, todolistId: string },
@@ -67,7 +68,7 @@ export const updateTask = createAsyncThunk('tasks/updateTask', async (param: { t
             return handleAsyncServerAppError(res.data, thunkAPI)
         }
     } catch (error) {
-        return handleAsyncServerNetworkError(error, thunkAPI)
+        return handleAsyncServerNetworkError(error as AxiosError, thunkAPI)
     }
 })
 

@@ -5,6 +5,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {handleAsyncServerAppError, handleAsyncServerNetworkError,} from '../../utils/error-utils'
 import {TodolistType} from '../../api/types'
 import {ThunkError} from '../../utils/types'
+import {AxiosError} from "axios";
 
 const {setAppStatus} = appActions
 
@@ -15,7 +16,7 @@ const fetchTodolistsTC = createAsyncThunk<{ todolists: TodolistType[] }, undefin
         thunkAPI.dispatch(setAppStatus({status: 'succeeded'}))
         return {todolists: res.data}
     } catch (error) {
-        return handleAsyncServerNetworkError(error, thunkAPI)
+        return handleAsyncServerNetworkError(error as AxiosError, thunkAPI)
     }
 })
 const removeTodolistTC = createAsyncThunk<{ id: string }, string, ThunkError>('todolists/removeTodolist', async (todolistId, {dispatch, rejectWithValue}) => {
@@ -40,7 +41,7 @@ const addTodolistTC = createAsyncThunk<{ todolist: TodolistType }, string, Thunk
             return handleAsyncServerAppError(res.data, thunkAPI, false)
         }
     } catch (error) {
-        return handleAsyncServerNetworkError(error, thunkAPI, false)
+        return handleAsyncServerNetworkError(error as AxiosError, thunkAPI, false)
     }
 })
 const changeTodolistTitleTC = createAsyncThunk('todolists/changeTodolistTitle', async (param: { id: string, title: string }, thunkAPI) => {
@@ -53,7 +54,7 @@ const changeTodolistTitleTC = createAsyncThunk('todolists/changeTodolistTitle', 
             return handleAsyncServerAppError(res.data, thunkAPI)
         }
     } catch (error) {
-        return handleAsyncServerNetworkError(error, thunkAPI, false)
+        return handleAsyncServerNetworkError(error as AxiosError, thunkAPI, false)
     }
 })
 
