@@ -58,7 +58,7 @@ function App({demo = false}: PropsType) {
                     {status === 'loading' && <LinearProgress color={"secondary"}/>}
                 </AppBar>
                 <Container fixed>
-                    <Route exact path={'/'} render={() => <TodolistsList demo={demo}/>}/>
+                    <Route exact path={'/todolist'} render={() => <TodolistsList demo={demo}/>}/>
                     <Route path={'/login'} render={() => <Login/>}/>
                 </Container>
             </div>
